@@ -1,0 +1,217 @@
+#!/data/data/com.termux/files/usr/bin/bash
+
+chmod 777 解包/quimhgyb
+chmod 777 解包/quickbms
+chmod 777 解包/打包.bms
+chmod 777 解包/解包.bms
+chmod 777 解包/dat.py
+chmod 777 dbjbbms/quickbms
+chmod 777 datjbdb/rc1
+chmod 777 dbjbbms/打包.bms
+chmod 777 dbjbbms/解包.bms
+
+
+if [[ -d "/data/user/0/com.termux/files/home/ch/" ]]; then
+echo ""
+else
+mkdir /data/user/0/com.termux/files/home/ch/
+fi
+
+if [[ -d "/data/user/0/com.termux/files/home/ch/" ]]; then
+echo ""
+else
+mkdir /data/user/0/com.termux/files/home/ch/
+fi
+qemu-i386 解包/quickbms 解包/解包.bms /storage/emulated/0/Download/ch/和平梅花/dat解包
+# Banner
+clear
+echo -e "${PURPLE}-----------------------------------${NOCOLOR}"
+echo -e "${GREEN}以后的路还长:${NOCOLOR} ${RED}要靠你自己来走来${NOCOLOR}"
+echo -e "${PURPLE}-----------------------------------${NOCOLOR}"
+sleep 0.5
+echo -ne ' 加载完成 \r'
+sleep 0.5
+function xg {
+    echo "请选择操作："
+    echo "1. 启动工具"
+    echo "0. 操作取消"
+    read choice
+    if [ $choice -eq 0 ]; then
+        echo -e "\033[33m操作取消 正在返回\033[0m"
+        sleep 3
+        source pak
+    elif [ $choice -eq 1 ]; then
+        if ! python 衣服枪皮飞行器之类/衣服枪皮之类.py; then
+            echo "程序运行失败，错误: $?"
+            sleep 1
+            source pak
+        else
+            echo "程序运行成功"
+            sleep 1
+            source pak
+        fi
+    else
+        echo "无效选择，请重新输入。"
+        sleep 1
+        source pak
+    fi
+}
+
+# MAIN MENU GG or NON-CHUNKS
+function gg {
+    PS3='输入你的选择: '
+    options=("$(echo -e "${PURPLE}块解包${NC}\n")" "$(echo -e "${LBLUE}非块解包${NC}\n")" "$(echo -e "${YELLOW}𝗕𝗔𝗖𝗞${NC}\n")")
+    select opt in "${options[@]}"; do
+        case $opt in
+            "$(echo -e "${PURPLE}块解包${NC}\n")")
+                unpackchunks
+                ;;
+            "$(echo -e "${LBLUE}非块解包${NC}\n")")
+                unpacknonchunks
+                ;;
+            "$(echo -e "${YELLOW}𝗕𝗔𝗖𝗞${NC}\n")")
+                break
+                ;;
+            *) echo "invalid option $REPLY";;
+        esac
+    done
+}
+
+function unpackchunks {
+
+echo "是否需要解包文件："
+    echo "0. 操作取消"
+    select file in $(find *.pak); do
+        if [[ $REPLY -eq 0 ]]; then
+            echo -e "\033[33m操作取消 正在返回\033[0m"
+            sleep 1
+            echo -e "\033[1;31m请回车呼出菜单栏\033[0m"
+           break
+           
+        elif [[ $REPLY -gt 0 && $REPLY -le ${#REPLY[@]} ]]; then
+            
+            if ! qemu-i386 解包/quickbms 解包/解包.bms $file 美化值输出; then
+                echo "解包失败，错误: $?"
+                sleep 1
+                echo -e "\033[1;31m请回车呼出菜单栏\033[0m"
+          break
+          
+            else
+                echo "解包成功: $file"
+                sleep 1
+                echo -e "\033[33m正在加载dat搜索系统\033[0m" 
+                sleep 1
+               zz
+            fi
+            break
+        else
+            echo "无效选择，请重新输入。"
+            sleep 1
+            echo -e "\033[1;31m请回车呼出菜单栏\033[0m"
+          break
+          
+        fi
+    done
+
+
+
+}
+
+function db {
+    local file
+    echo -e "${LIGHTPURPLE}请选择要打包的 PAK 文件：${NOCOLOR}"
+    echo "0. 操作取消"
+    #这里是定义函数 file函数 让他代表存放pak的文件夹，以及搜索.pak后缀文件
+    select file in $(find /sdcard/Download/ttdn三合一路径/PAK -name "*.pak"); do
+        if [[ $REPLY -eq 0 ]]; then
+            echo -e "\033[33m操作取消 正在返回\033[0m"
+            sleep 1
+            source datjbdb/rc1
+        elif [[ $REPLY -gt 0 && $REPLY -le ${#REPLY[@]} ]]; then
+            #这里是打包指令 $file 是指引用 file函数
+            if ! qemu-i386 dbjbbms/quickbms -w -r -r dbjbbms/打包.bms $file /sdcard/Download/ttdn三合一路径/打包; then
+                echo -e "${RED}打包失败，错误: $? ${NOCOLOR}"
+                sleep 1
+                source datjbdb/rc1
+            else
+                echo -e "${LIGHTPURPLE}打包成功: $file ${NOCOLOR}"
+                sleep 1
+                source datjbdb/rc1
+            fi
+            break
+        else
+            echo "无效选择，请重新输入。"
+            sleep 1
+            source datjbdb/rc1
+        fi
+    done
+   
+}
+function kjzl {
+chmod +x setup
+chmod +x setup
+chmod +x setup
+bash setu
+}
+
+function 3 {
+    echo "请选择操作："
+    echo "1. 启动工具"
+    echo "0. 操作取消"
+    read choice
+    if [ $choice -eq 0 ]; then
+        echo -e "\033[33m操作取消 正在返回\033[0m"
+        sleep 3
+        source pak
+    elif [ $choice -eq 1 ]; then
+        if ! python 一键伪实体/和平美化工具源码.py; then
+            echo "程序运行失败，错误: $?"
+            sleep 1
+            source pak
+        else
+            echo "程序运行成功"
+            sleep 1
+            source pak
+        fi
+    else
+        echo "无效选择，请重新输入。"
+        sleep 1
+        source pak
+    fi
+}
+
+
+
+
+
+
+
+PS3="请选择工具类型:"
+options=("【衣服枪皮】" "【解包】" "【打包】" "【创建快健指令】" "【一键美化】" "退出")
+
+
+select opt in "${options[@]}"
+do
+ case $opt in
+    
+    "【衣服枪皮】")
+      xg
+    ;;
+    "【解包】")
+     gg
+    ;;
+    "【打包】")
+     db
+    ;;
+    "【快健】")
+     kjzl
+    ;;
+    "【一键美化】")
+     3
+    ;;
+   "退出")
+    exit 1
+    ;;
+     *) echo "invalid option $REPLY";;
+  esac
+done

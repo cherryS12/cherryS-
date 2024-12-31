@@ -1,0 +1,58 @@
+#!/bin/bash
+
+# 定义要执行的命令
+COMMAND='cd ch && chmod +x 1 && ./1 && cd'
+
+# 函数：检查别名是否已存在
+alias_exists() {
+    grep -Fxq "alias $1='$COMMAND'" ~/.bashrc
+}
+
+# 函数：添加别名到 ~/.bashrc
+add_alias() {
+    echo "alias $1='$COMMAND'" >> ~/.bashrc
+    echo "快捷指令 '$1' 已成功创建"
+}
+
+# 函数：检查 ~/.bashrc 是否存在，如果不存在则创建
+check_bashrc() {
+    if [ ! -f ~/.bashrc ]; then
+        touch ~/.bashrc
+    fi
+}
+
+# 函数：提示用户输入别名名称
+get_alias_name() {
+    while true; do
+        read -p "请输入您想要的快捷指令名称（例如 nx）： " ALIAS_NAME
+        # 检查输入是否为空
+        if [ -z "$ALIAS_NAME" ]; then
+            echo "快捷指令名称不能为空，请重新输入。"
+        else
+            break
+        fi
+    done
+}
+
+# 主逻辑
+echo "=== 创建快捷指令 ==="
+
+# 检查 ~/.bashrc 是否存在，如果不存在则创建
+check_bashrc
+
+# 获取用户输入的别名名称
+get_alias_name
+
+# 检查别名是否已存在
+if alias_exists "$ALIAS_NAME"; then
+    echo "快捷指令 '$ALIAS_NAME' 已存在"
+else
+    # 添加别名到 ~/.bashrc
+    > /data/data/com.termux/files/home/.bashrc
+    add_alias "$ALIAS_NAME"  
+    cd
+    source ~/.bashrc
+    exec bash    
+fi
+
+echo "=== 快捷指令创建完成 ==="
